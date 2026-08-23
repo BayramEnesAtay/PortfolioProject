@@ -1,0 +1,12 @@
+/* GlobalStyles.js içindeki ayarlar yeterli olduğu için buradaki eski flex ve height ayarlarını temizliyoruz.
+   Aksi halde body "display: flex; align-items: center" olduğunda, içerik 100vh'den uzunsa yukarı taşar ve üst kısmı kesik görünür. */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
