@@ -2,24 +2,29 @@ import styled from 'styled-components';
 
 export const NavWrapper = styled.div`
   position: fixed;
-  top: 32px;
+  top: 0;
   left: 0;
   width: 100%;
   display: flex;
   justify-content: center;
   z-index: 9999;
-  padding: 0 16px; /* Mobil için kenar boşluğu */
+  padding: 32px 16px;
+  background-color: ${props => props.$scrolled ? 'rgba(252, 252, 245, 0.6)' : 'transparent'};
+  backdrop-filter: ${props => props.$scrolled ? 'blur(8px)' : 'none'};
+  transition: all 0.3s ease;
 `;
 
 export const NavContainer = styled.nav`
   display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
   background-color: #fff;
   border: var(--border-main);
   box-shadow: var(--box-shadow-main);
   
   @media (max-width: 768px) {
     flex-direction: column;
-    width: 100%;
     max-width: 400px;
   }
 `;
@@ -44,9 +49,11 @@ export const Logo = styled.div`
 
 export const NavLinks = styled.div`
   display: flex;
+  border-left: var(--border-main);
 
   @media (max-width: 768px) {
     width: 100%;
+    border-left: none;
   }
 `;
 
@@ -54,7 +61,7 @@ export const NavLink = styled.a`
   padding: 12px 24px;
   font-weight: 700;
   font-size: 14px;
-  border-right: ${props => props.$isLast ? 'none' : 'var(--border-main)'};
+  border-right: var(--border-main);
   background-color: ${props => props.$isActive ? props.$activeColor : 'transparent'};
   cursor: pointer;
   transition: background-color 0.2s ease;
@@ -68,5 +75,29 @@ export const NavLink = styled.a`
 
   @media (max-width: 768px) {
     padding: 12px 8px;
+  }
+`;
+
+export const LangToggle = styled.button`
+  padding: 12px 18px;
+  font-weight: 900;
+  font-size: 13px;
+  background-color: ${props => props.$lang === 'tr' ? 'var(--bg-accent-yellow)' : 'var(--bg-accent-blue)'};
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+  user-select: none;
+  letter-spacing: 0.5px;
+
+  &:hover {
+    background-color: var(--bg-accent-pink);
+  }
+
+  @media (max-width: 768px) {
+    justify-content: center;
+    padding: 10px;
   }
 `;

@@ -9,9 +9,14 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     background-color: var(--bg-primary);
+    background-image: 
+      linear-gradient(to right, rgba(0, 0, 0, 0.065) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.065) 1px, transparent 1px);
+    background-size: 36px 36px;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     color: #000;
     overflow-x: hidden;
+    min-height: 100vh;
   }
 
   /* Neu-brutalism global değişkenler */

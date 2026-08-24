@@ -1,19 +1,19 @@
 import styled from 'styled-components';
 
 export const HeroContainer = styled.section`
-  padding: 140px var(--spacing-lg) var(--spacing-xl);
+  padding: 165px var(--spacing-lg) 60px;
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 100vh;
   position: relative;
 
   @media (max-width: 900px) {
     flex-direction: column;
     text-align: center;
-    gap: 80px;
+    gap: 60px;
+    padding: 140px var(--spacing-lg) 40px;
   }
 `;
 
@@ -23,31 +23,50 @@ export const LeftColumn = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 80px;
+  font-size: 38px;
   font-weight: 900;
-  line-height: 1.1;
-  margin-bottom: var(--spacing-lg);
+  line-height: 1.25;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  color: #000;
   
   @media (max-width: 768px) {
-    font-size: 48px;
+    font-size: 28px;
   }
 `;
 
 export const Highlight = styled.span`
   background-color: var(--bg-accent-yellow);
-  padding: 0 8px;
+  padding: 2px 8px;
   display: inline-block;
-  transform: rotate(-2deg);
-  border: var(--border-main);
-  box-shadow: 4px 4px 0px 0px #000;
+  transform: rotate(-1.5deg);
+  border: 2px solid #000;
+  box-shadow: 3px 3px 0px 0px #000;
+`;
+
+export const BioText = styled.p`
+  font-size: 21px;
+  line-height: 1.7;
+  color: #1a1a1a;
+  font-weight: 600;
+  max-width: 600px;
+  margin-bottom: 32px;
+
+  @media (max-width: 900px) {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 17px;
+    line-height: 1.65;
+  }
 `;
 
 export const CTAButton = styled.button`
   background-color: var(--bg-accent-blue);
   color: #000;
-  font-size: 20px;
-  font-weight: 800;
-  padding: 16px 40px;
+  font-size: 18px;
+  font-weight: 900;
+  padding: 15px 38px;
   border: var(--border-main);
   border-radius: 50px;
   cursor: pointer;
@@ -57,10 +76,11 @@ export const CTAButton = styled.button`
   &:hover {
     transform: translate(-2px, -2px);
     box-shadow: var(--box-shadow-hover);
+    background-color: var(--bg-accent-yellow);
   }
 
   &:active {
-    transform: translate(6px, 6px);
+    transform: translate(4px, 4px);
     box-shadow: var(--box-shadow-active);
   }
 `;
@@ -114,10 +134,10 @@ export const Frame = styled.div`
 
 export const FrameDecoration = styled.div`
   position: absolute;
-  top: -60px;
+  top: -40px;
   left: 20%;
   font-weight: 900;
-  font-size: 20px;
+  font-size: 18px;
   transform: rotate(-15deg);
   font-family: 'Comic Sans MS', cursive, sans-serif;
 `;

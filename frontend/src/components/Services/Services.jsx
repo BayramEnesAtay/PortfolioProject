@@ -1,55 +1,58 @@
+import { useLanguage } from '../../context/LanguageContext';
 import { ServicesContainer, Title, Grid, Cell, CellHeader, IconWrapper, CellTitle, CellText, LargeNumber } from './Services.styles';
 
 const Services = () => {
+  const { t } = useLanguage();
+
   return (
     <ServicesContainer id="about">
-      <Title>Backend & Architecture <span>☻</span></Title>
+      <Title>{t.services.title} <span>☻</span></Title>
       <Grid>
         <Cell style={{ backgroundColor: 'var(--bg-primary)' }}>
           <div>
-            <LargeNumber>15+</LargeNumber>
-            <CellText>Backend Projects</CellText>
+            <LargeNumber>{t.services.projectsCount}</LargeNumber>
+            <CellText>{t.services.projectsLabel}</CellText>
           </div>
           <div style={{ marginTop: '32px' }}>
-            <LargeNumber>99%</LargeNumber>
-            <CellText>Uptime Focus</CellText>
+            <LargeNumber>{t.services.uptimeCount}</LargeNumber>
+            <CellText>{t.services.uptimeLabel}</CellText>
           </div>
         </Cell>
 
         <Cell>
           <CellHeader>
             <IconWrapper $bgColor="var(--bg-accent-yellow)">⚙️</IconWrapper>
-            <CellTitle>API Design</CellTitle>
+            <CellTitle>{t.services.apiDesignTitle}</CellTitle>
           </CellHeader>
-          <CellText>RESTful mimariler ve temiz kod prensipleriyle ölçeklenebilir, dökümante edilmiş (Swagger) sistemler inşa ediyorum.</CellText>
+          <CellText>{t.services.apiDesignText}</CellText>
         </Cell>
 
         <Cell>
           <CellHeader>
             <IconWrapper $bgColor="var(--bg-accent-pink)">#</IconWrapper>
-            <CellTitle>Database</CellTitle>
+            <CellTitle>{t.services.databaseTitle}</CellTitle>
           </CellHeader>
-          <CellText>PostgreSQL ile kompleks veri modelleme, performans optimizasyonu ve veri bütünlüğü yönetimi.</CellText>
+          <CellText>{t.services.databaseText}</CellText>
         </Cell>
 
         <Cell style={{ backgroundColor: 'var(--bg-primary)' }}>
-          {/* Boş bırakılabilir veya ek metin konabilir */}
+          {/* Boş dekoratif hücre */}
         </Cell>
 
         <Cell>
           <CellHeader>
             <IconWrapper $bgColor="var(--bg-accent-orange)">🛡️</IconWrapper>
-            <CellTitle>Security</CellTitle>
+            <CellTitle>{t.services.securityTitle}</CellTitle>
           </CellHeader>
-          <CellText>Spring Security ile güvenli, JWT tabanlı ve role dayalı yetkilendirme (authorization) altyapıları kuruyorum.</CellText>
+          <CellText>{t.services.securityText}</CellText>
         </Cell>
 
         <Cell>
           <CellHeader>
             <IconWrapper $bgColor="var(--bg-accent-blue)">⚡</IconWrapper>
-            <CellTitle>Architecture</CellTitle>
+            <CellTitle>{t.services.architectureTitle}</CellTitle>
           </CellHeader>
-          <CellText>Katmanlı mimari (Layered Architecture) ve sürdürülebilir sistem tasarımı ile kurumsal standartlarda kodlama yapıyorum.</CellText>
+          <CellText>{t.services.architectureText}</CellText>
         </Cell>
       </Grid>
     </ServicesContainer>

@@ -1,61 +1,89 @@
-import { useState, useEffect } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { GlobalStyles } from './styles/GlobalStyles';
+import { LanguageProvider, useLanguage } from './context/LanguageContext';
+import { PixelCursorTrail } from '@/components/ui/pixel-trail';
 import Navbar from './components/Navbar/Navbar';
-import IntroScreen from './components/IntroScreen/IntroScreen';
-import Hero from './components/Hero/Hero';
-import TechStack from './components/TechStack/TechStack';
-import Services from './components/Services/Services';
-import Portfolio from './components/Portfolio/Portfolio';
-import Testimonials from './components/Testimonials/Testimonials';
-import ContactCTA from './components/ContactCTA/ContactCTA';
 import Footer from './components/Footer/Footer';
+import TransitionScreen from './components/TransitionScreen/TransitionScreen';
 
-// MainContent'in padding'ini kaldırdık, çünkü her sayfanın kendi üst boşluğu (140px) var
+// Code Splitting (Lazy Loading)
+const Home = lazy(() => import('./components/Home/Home'));
+const Experience = lazy(() => import('./components/Experience/Experience'));
+const Portfolio = lazy(() => import('./components/Portfolio/Portfolio'));
+const ProjectDetail = lazy(() => import('./components/ProjectDetail/ProjectDetail'));
+const ContactCTA = lazy(() => import('./components/ContactCTA/ContactCTA'));
+const NotFound = lazy(() => import('./components/NotFound/NotFound'));
+
 const MainContent = styled.main`
   width: 100%;
 `;
 
-function App() {
-  const [currentPage, setCurrentPage] = useState('home');
+// Rota degistiginde otomatik tepeye kaydiran ve kisa gecis hissi veren yonetici
+const RouteTransitionWatcher = () => {
+  const location = useLocation();
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
-    // Sayfa değiştiğinde her zaman en üste kaydır
     window.scrollTo(0, 0);
-  }, [currentPage]);
+    setIsTransitioning(true);
+    const timer = setTimeout(() => {
+      setIsTransitioning(false);
+    }, 450);
 
-  const handleNavigate = (page) => {
-    setCurrentPage(page);
-  };
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
+
+  return isTransitioning ? <TransitionScreen /> : null;
+};
+
+function AppContent() {
+  const { isLangTransitioning, t } = useLanguage();
 
   return (
     <>
       <GlobalStyles />
-      <Navbar activeSection={currentPage} onNavClick={handleNavigate} />
+      <PixelCursorTrail colors={['#00f59b', '#ff4d4d']} />
+      <Navbar />
+      <RouteTransitionWatcher />
+      
+      {/* Dil degisimi sirasinda acilan yukleme ekrani */}
+      {isLangTransitioning && (
+        <TransitionScreen 
+          label={t.transition.langSwitch} 
+          status={t.transition.langStatus} 
+        />
+      )}
       
       <MainContent>
-        {currentPage === 'home' && (
-          <>
-            <Hero onNavigate={() => handleNavigate('portfolio')} />
-            <TechStack />
-            <Services />
-          </>
-        )}
-
-        {currentPage === 'portfolio' && (
-          <>
-            <Portfolio />
-            <Testimonials />
-          </>
-        )}
-
-        {currentPage === 'contact' && (
-          <ContactCTA />
-        )}
-
+        <Suspense fallback={<TransitionScreen />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<Home />} />
+            <Route path="/experience" element={<Experience />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/portfolio/:id" element={<ProjectDetail />} />
+            <Route path="/contact" element={<ContactCTA />} />
+            <Route path="/hire-me" element={<ContactCTA />} />
+            {/* Gecersiz URL'ler icin 404 Skeleton Sayfasi */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+        
         <Footer />
       </MainContent>
     </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <LanguageProvider>
+        <AppContent />
+      </LanguageProvider>
+    </BrowserRouter>
   );
 }
 
