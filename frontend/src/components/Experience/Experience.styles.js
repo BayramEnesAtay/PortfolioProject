@@ -63,7 +63,7 @@ export const TreeWrapper = styled.div`
 export const BranchItem = styled.div`
   display: flex;
   position: relative;
-  margin-bottom: 50px;
+  margin-bottom: 44px;
   width: 100%;
   align-items: flex-start;
 
@@ -150,37 +150,15 @@ export const BranchCardHeader = styled.div`
   border-bottom: var(--border-main);
   padding: 16px 20px;
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-`;
-
-export const BranchTagRow = styled.div`
-  display: flex;
-  align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 8px;
+  align-items: flex-start;
+  gap: 12px;
 `;
 
-export const BranchHash = styled.span`
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 11px;
-  font-weight: 900;
-  background: #000;
-  color: #fff;
-  padding: 3px 8px;
-  letter-spacing: 0.5px;
-`;
-
-export const PeriodBadge = styled.span`
-  background-color: #fff;
-  color: #000;
-  border: 2px solid #000;
-  font-size: 11px;
-  font-weight: 900;
-  padding: 3px 10px;
-  box-shadow: 2px 2px 0px 0px #000;
-  text-transform: uppercase;
+export const HeaderLeft = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 `;
 
 export const RoleTitle = styled.h2`
@@ -196,35 +174,30 @@ export const CompanyName = styled.span`
   color: #222;
 `;
 
+export const PeriodBadge = styled.span`
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #000;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 4px 10px;
+  box-shadow: 2px 2px 0px 0px #000;
+  text-transform: uppercase;
+  white-space: nowrap;
+`;
+
 export const CardBody = styled.div`
-  padding: 20px;
+  padding: 20px 24px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 `;
 
-export const MetaRow = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-`;
-
-export const MetaPill = styled.span`
-  background-color: var(--bg-primary);
-  border: 1.5px solid #000;
-  font-size: 11px;
-  font-weight: 800;
-  padding: 3px 8px;
-`;
-
-export const SummaryText = styled.p`
-  font-size: 14px;
-  line-height: 1.6;
-  font-weight: 600;
-  color: #222;
-  border-left: 3px solid #000;
-  padding-left: 10px;
+export const MetaText = styled.p`
+  font-size: 13px;
+  font-weight: 700;
+  color: #555;
+  margin: 0;
 `;
 
 export const ResponsibilitiesList = styled.ul`
@@ -237,19 +210,20 @@ export const ResponsibilitiesList = styled.ul`
 `;
 
 export const ResponsibilityItem = styled.li`
-  font-size: 13px;
-  line-height: 1.5;
+  font-size: 13.5px;
+  line-height: 1.55;
   font-weight: 600;
-  color: #333;
+  color: #222;
   display: flex;
   align-items: flex-start;
-  gap: 8px;
+  gap: 10px;
 
   &::before {
-    content: '├──';
+    content: '→';
     font-weight: 900;
     color: #000;
-    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+    line-height: 1.3;
     flex-shrink: 0;
   }
 `;
@@ -265,7 +239,7 @@ export const SkillsWrapper = styled.div`
 export const SkillTag = styled.span`
   background-color: #fff;
   border: 1.5px solid #000;
-  padding: 3px 8px;
+  padding: 4px 10px;
   font-size: 11px;
   font-weight: 800;
   box-shadow: 2px 2px 0px 0px #000;

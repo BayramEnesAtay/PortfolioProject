@@ -6,18 +6,18 @@ export const DetailContainer = styled.section`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 36px;
   min-height: calc(100vh - 200px);
 `;
 
 export const HeaderBox = styled.div`
-  background-color: ${props => props.$bg || 'var(--bg-accent-yellow)'};
+  background-color: ${props => props.$bg || 'var(--bg-accent-blue)'};
   border: var(--border-main);
   box-shadow: var(--box-shadow-main);
-  padding: 44px 32px 32px;
+  padding: 48px 36px 36px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
   position: relative;
 
   @media (max-width: 768px) {
@@ -105,8 +105,8 @@ export const BentoRow = styled.div`
 `;
 
 export const BentoCell = styled.div`
-  padding: 28px 32px;
-  background-color: ${props => props.$bg || '#fff'};
+  padding: 36px 40px;
+  background-color: #fff;
   border-right: ${props => props.$noBorderRight ? 'none' : 'var(--border-main)'};
   display: flex;
   flex-direction: column;
@@ -115,7 +115,7 @@ export const BentoCell = styled.div`
   @media (max-width: 850px) {
     border-right: none !important;
     border-bottom: ${props => props.$noBorderBottomMobile ? 'none' : 'var(--border-main)'};
-    padding: 24px 20px;
+    padding: 28px 24px;
   }
 `;
 
@@ -123,32 +123,31 @@ export const CellHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 16px;
-  padding-bottom: 10px;
-  border-bottom: 2px dashed #000;
+  margin-bottom: 20px;
 `;
 
 export const CellTitle = styled.h3`
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: -0.3px;
-  color: ${props => props.$color || '#000'};
+  color: #000;
 `;
 
 export const CellTag = styled.span`
   font-size: 11px;
   font-weight: 800;
   text-transform: uppercase;
-  padding: 3px 8px;
-  background-color: ${props => props.$bg || '#000'};
+  padding: 4px 10px;
+  background-color: #000;
   color: #fff;
   border-radius: 2px;
+  letter-spacing: 0.5px;
 `;
 
 export const TextContent = styled.p`
   font-size: 15px;
-  line-height: 1.7;
+  line-height: 1.75;
   font-weight: 500;
   color: #222;
 `;
@@ -170,54 +169,57 @@ export const TechTag = styled.span`
   border: 1px solid #222;
 `;
 
-/* AYRI MÜHENDİSLİK KAZANIMLARI BÖLÜMÜ */
+/* FLATTENED MÜHENDİSLİK KAZANIMLARI BÖLÜMÜ */
 export const LearningsSection = styled.div`
-  border: var(--border-main);
-  box-shadow: var(--box-shadow-main);
-  background-color: var(--bg-accent-blue);
-  padding: 32px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-
-  @media (max-width: 768px) {
-    padding: 24px 20px;
-  }
+  margin-top: 8px;
 `;
 
 export const LearningsHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 2px solid #000;
-  padding-bottom: 12px;
 `;
 
 export const LearningsTitle = styled.h3`
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.5px;
+  color: #000;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
 `;
 
 export const LearningsGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 20px;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 `;
 
 export const LearningCard = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
   background: #fff;
-  padding: 16px 20px;
-  border: 2px solid #000;
-  box-shadow: 4px 4px 0px 0px #000;
+  padding: 24px 28px;
+  border: var(--border-main);
+  box-shadow: var(--box-shadow-main);
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: var(--box-shadow-hover);
+  }
 `;
 
 export const LearningIndex = styled.span`
@@ -230,7 +232,7 @@ export const LearningIndex = styled.span`
 
 export const LearningText = styled.p`
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.65;
   font-weight: 600;
   color: #111;
 `;
@@ -240,7 +242,7 @@ export const ActionRow = styled.div`
   gap: 16px;
   flex-wrap: wrap;
   justify-content: center;
-  padding-top: 8px;
+  padding-top: 12px;
 `;
 
 export const ActionButton = styled.a`
@@ -401,8 +403,7 @@ export const FormTitle = styled.h4`
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.3px;
-  border-bottom: 2px dashed #000;
-  padding-bottom: 8px;
+  padding-bottom: 4px;
 `;
 
 export const FormInput = styled.input`

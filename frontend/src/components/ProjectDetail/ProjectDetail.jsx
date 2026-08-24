@@ -129,7 +129,7 @@ const ProjectDetail = () => {
 
   return (
     <DetailContainer>
-      {/* Üst Başlık Kartı */}
+      {/* Üst Başlık Kartı - Tek Vurgu Rengi (Mavi) */}
       <HeaderBox $bg={currentProject.bg}>
         <BackButton onClick={() => navigate('/portfolio')}>
           {t.projectDetail.back}
@@ -139,11 +139,11 @@ const ProjectDetail = () => {
         <Subtitle>{desc}</Subtitle>
       </HeaderBox>
 
-      {/* 2 SÜTUNLU BİRLEŞİK BENTO GRID */}
+      {/* 2 SÜTUNLU BENTO GRID - Tüm Hücreler Beyaz Arka Plan */}
       <TwoColumnBentoGrid>
         {/* Satır 1: Teknik Genel Bakış (Sol) | Tech Stack (Sağ) */}
         <BentoRow>
-          <BentoCell $bg="var(--bg-accent-pink)">
+          <BentoCell>
             <CellHeader>
               <CellTitle>{t.projectDetail.overviewTitle}</CellTitle>
               <CellTag>{t.projectDetail.overviewTag}</CellTag>
@@ -153,12 +153,12 @@ const ProjectDetail = () => {
             </TextContent>
           </BentoCell>
 
-          <BentoCell $bg="#fff" $noBorderRight>
+          <BentoCell $noBorderRight>
             <CellHeader>
               <CellTitle>{t.projectDetail.techStackTitle}</CellTitle>
               <CellTag>{t.projectDetail.techStackTag}</CellTag>
             </CellHeader>
-            <TextContent style={{ marginBottom: '14px', fontSize: '13px', color: '#555' }}>
+            <TextContent style={{ marginBottom: '16px', fontSize: '14px', color: '#444' }}>
               {t.projectDetail.techStackSub}
             </TextContent>
             <TechTags>
@@ -171,17 +171,17 @@ const ProjectDetail = () => {
 
         {/* Satır 2: Karşılaşılan Sorun (Sol) | Nasıl Çözüldü? (Sağ) */}
         <BentoRow $isLast>
-          <BentoCell $bg="#fff">
+          <BentoCell>
             <CellHeader>
-              <CellTitle $color="#b71c1c">{t.projectDetail.problemTitle}</CellTitle>
-              <CellTag $bg="#b71c1c">{t.projectDetail.problemTag}</CellTag>
+              <CellTitle>{t.projectDetail.problemTitle}</CellTitle>
+              <CellTag>{t.projectDetail.problemTag}</CellTag>
             </CellHeader>
             <TextContent>
               {problem}
             </TextContent>
           </BentoCell>
 
-          <BentoCell $bg="var(--bg-accent-yellow)" $noBorderRight $noBorderBottomMobile>
+          <BentoCell $noBorderRight $noBorderBottomMobile>
             <CellHeader>
               <CellTitle>{t.projectDetail.solutionTitle}</CellTitle>
               <CellTag>{t.projectDetail.solutionTag}</CellTag>
@@ -193,12 +193,11 @@ const ProjectDetail = () => {
         </BentoRow>
       </TwoColumnBentoGrid>
 
-      {/* AYRI BÖLÜM: Mühendislik Kazanımları / Bana Ne Kattı? */}
+      {/* DÜZLEŞTİRİLMİŞ MÜHENDİSLİK KAZANIMLARI BÖLÜMÜ */}
       {learnings && learnings.length > 0 && (
         <LearningsSection>
           <LearningsHeader>
             <LearningsTitle>{t.projectDetail.learningsTitle}</LearningsTitle>
-            <CellTag>{t.projectDetail.learningsTag}</CellTag>
           </LearningsHeader>
           <LearningsGrid>
             {learnings.map((learning, index) => (
