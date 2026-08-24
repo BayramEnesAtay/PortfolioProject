@@ -11,6 +11,7 @@ export const translations = {
       titlePart1: "Üst düzey",
       titleHighlight: "backend sistemleri",
       titlePart2: "tasarlıyorum",
+      bio: "Gazi Üniversitesi Bilgisayar Mühendisliği bölümünde eğitimine devam eden, Java Spring Boot ve PostgreSQL ile ölçeklenebilir backend sistemleri inşa eden bir yazılım mühendisiyim. Katmanlı mimari, güvenli RESTful API'lar ve performanslı veritabanı tasarımları üzerine yoğunlaşıyorum.",
       seePortfolio: "Portfolyoyu İncele",
       badge: "B. ENES"
     },
@@ -90,6 +91,7 @@ export const translations = {
       ]
     },
     contact: {
+      statusBadge: "Backend & Mimari Rolleri İçin Uygun",
       title: "Mimarini Birlikte İnşa Edelim",
       description: "Performanslı, güvenli ve ölçeklenebilir backend sistemleri, RESTful API mimarileri veya veritabanı modellemesi için doğrudan mesaj bırakabilirsiniz.",
       pillResponse: "Yanıt Süresi: < 24 Saat",
@@ -142,6 +144,7 @@ export const translations = {
       titlePart1: "I design",
       titleHighlight: "top notch backends",
       titlePart2: "",
+      bio: "Computer Engineering student at Gazi University and a software engineer building scalable backend systems with Java Spring Boot and PostgreSQL. Focusing on layered architecture, secure RESTful APIs, and high-performance database design.",
       seePortfolio: "See Portfolio",
       badge: "B. ENES"
     },

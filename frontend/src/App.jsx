@@ -44,7 +44,7 @@ function AppContent() {
   return (
     <>
       <GlobalStyles />
-      <PixelCursorTrail colors={['#000000', '#ffde59']} />
+      <PixelCursorTrail colors={['#00f59b', '#ff4d4d']} />
       <Navbar />
       <RouteTransitionWatcher />
       

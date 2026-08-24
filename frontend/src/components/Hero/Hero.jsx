@@ -1,11 +1,23 @@
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
-import { HeroContainer, LeftColumn, Title, Highlight, CTAButton, RightColumn, Frame, FrameDecoration, BulbIcon, StarIcon } from './Hero.styles';
+import { 
+  HeroContainer, 
+  LeftColumn, 
+  Title, 
+  Highlight, 
+  BioText,
+  CTAButton, 
+  RightColumn, 
+  Frame, 
+  FrameDecoration, 
+  BulbIcon, 
+  StarIcon 
+} from './Hero.styles';
 
 const Hero = () => {
   const navigate = useNavigate();
   const { t } = useLanguage();
-// deneme
+
   return (
     <HeroContainer id="home">
       <LeftColumn>
@@ -13,6 +25,12 @@ const Hero = () => {
           {t.hero.titlePart1} <br /> 
           <Highlight>{t.hero.titleHighlight}</Highlight> {t.hero.titlePart2}
         </Title>
+
+        {/* Kısa Tanıtım / Biyografi Metni */}
+        <BioText>
+          {t.hero.bio}
+        </BioText>
+
         <CTAButton onClick={() => navigate('/portfolio')}>
           {t.hero.seePortfolio}
         </CTAButton>
