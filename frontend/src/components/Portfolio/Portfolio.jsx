@@ -60,7 +60,7 @@ const Portfolio = () => {
       {/* Sayfalama sırasındaki geçiş animasyonu */}
       {isPageTransitioning && <TransitionScreen />}
 
-      <Title>{t.portfolio.title} 💠</Title>
+      <Title>{t.portfolio.title}</Title>
       
       <Grid>
         {currentProjects.map((project) => (

@@ -10,9 +10,9 @@ export const translations = {
     hero: {
       titlePart1: "Üst düzey",
       titleHighlight: "backend sistemleri",
-      titlePart2: "tasarlıyorum ✍️",
+      titlePart2: "tasarlıyorum",
       seePortfolio: "Portfolyoyu İncele",
-      badge: "☻ B. ENES"
+      badge: "B. ENES"
     },
     techStack: {
       title: "Kullandığım Teknolojiler"
@@ -142,9 +142,9 @@ export const translations = {
     hero: {
       titlePart1: "I design",
       titleHighlight: "top notch backends",
-      titlePart2: "✍️",
+      titlePart2: "",
       seePortfolio: "See Portfolio",
-      badge: "☻ B. ENES"
+      badge: "B. ENES"
     },
     techStack: {
       title: "Technologies & Tools"

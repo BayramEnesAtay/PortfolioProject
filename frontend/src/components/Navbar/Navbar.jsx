@@ -63,7 +63,7 @@ const Navbar = () => {
             onClick={toggleLanguage}
             title={language === 'tr' ? 'Switch to English' : 'Türkçe\'ye Geç'}
           >
-            🌐 {language === 'tr' ? 'TR' : 'EN'}
+            {language === 'tr' ? 'TR' : 'EN'}
           </LangToggle>
         </NavLinks>
       </NavContainer>

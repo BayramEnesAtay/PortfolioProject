@@ -6,8 +6,6 @@ import {
   Title, 
   Subtitle, 
   TreeWrapper,
-  RootNode,
-  RootBadge,
   BranchItem,
   NodePoint,
   ConnectorArm,
@@ -39,14 +37,7 @@ const Experience = () => {
       </HeaderBox>
 
       <TreeWrapper>
-        {/* KÖK DÜĞÜMÜ (ROOT DÜĞÜM) */}
-        <RootNode>
-          <RootBadge>
-            <span>●</span> ROOT // ARCHITECTURE_GRAPH_INIT
-          </RootBadge>
-        </RootNode>
-
-        {/* DALLANAN AĞAÇ DÜĞÜMLERİ */}
+        {/* DALLANAN MİMARİ AĞAÇ DÜĞÜMLERİ */}
         {experiencesData.map((exp, index) => {
           const isRight = index % 2 !== 0; // Masaüstünde çiftler solda, tekler sağda
           const isCurrent = index === 0;

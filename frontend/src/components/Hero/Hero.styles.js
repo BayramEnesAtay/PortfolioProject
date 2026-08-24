@@ -1,19 +1,19 @@
 import styled from 'styled-components';
 
 export const HeroContainer = styled.section`
-  padding: 140px var(--spacing-lg) var(--spacing-xl);
+  padding: 165px var(--spacing-lg) 60px;
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 100vh;
   position: relative;
 
   @media (max-width: 900px) {
     flex-direction: column;
     text-align: center;
-    gap: 80px;
+    gap: 60px;
+    padding: 140px var(--spacing-lg) 40px;
   }
 `;
 
@@ -114,10 +114,10 @@ export const Frame = styled.div`
 
 export const FrameDecoration = styled.div`
   position: absolute;
-  top: -60px;
+  top: -40px;
   left: 20%;
   font-weight: 900;
-  font-size: 20px;
+  font-size: 18px;
   transform: rotate(-15deg);
   font-family: 'Comic Sans MS', cursive, sans-serif;
 `;

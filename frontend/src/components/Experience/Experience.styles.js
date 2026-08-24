@@ -14,7 +14,7 @@ export const ExperienceContainer = styled.section`
 
 export const HeaderBox = styled.div`
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 `;
 
 export const Title = styled.h1`
@@ -39,14 +39,14 @@ export const TreeWrapper = styled.div`
   position: relative;
   max-width: 900px;
   margin: 0 auto;
-  padding: 20px 0 60px;
+  padding: 10px 0 40px;
 
   /* Ana Dikey Gövde / Trunk Çizgisi */
   &::before {
     content: '';
     position: absolute;
-    top: 40px;
-    bottom: 20px;
+    top: 24px;
+    bottom: 24px;
     left: 32px;
     width: 6px;
     background-color: #000;
@@ -59,36 +59,11 @@ export const TreeWrapper = styled.div`
   }
 `;
 
-/* KÖK DÜĞÜMÜ (ROOT NODE) */
-export const RootNode = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 50px;
-  position: relative;
-  z-index: 2;
-`;
-
-export const RootBadge = styled.div`
-  background-color: #000;
-  color: var(--bg-accent-yellow);
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 13px;
-  font-weight: 900;
-  padding: 8px 20px;
-  border: 3px solid #000;
-  box-shadow: 4px 4px 0px 0px var(--bg-accent-yellow);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-`;
-
 /* DALLANAN DÜĞÜM SIRASI (BRANCH ITEM) */
 export const BranchItem = styled.div`
   display: flex;
   position: relative;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
   width: 100%;
   align-items: flex-start;
 
