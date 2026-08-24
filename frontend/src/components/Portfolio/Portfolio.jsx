@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext';
 import { projectsData } from '../../data/projects';
 import { 
   PortfolioContainer, 
@@ -11,21 +13,22 @@ import {
   LinkButton 
 } from './Portfolio.styles';
 
-const Portfolio = ({ onNavigate }) => {
-  const handleCardClick = (project) => {
-    if (onNavigate) {
-      onNavigate('projectDetail', project);
-    }
+const Portfolio = () => {
+  const navigate = useNavigate();
+  const { language, t } = useLanguage();
+
+  const handleCardClick = (projectId) => {
+    navigate(`/portfolio/${projectId}`);
   };
 
   return (
     <PortfolioContainer id="portfolio">
-      <Title>My Portfolio 💠</Title>
+      <Title>{t.portfolio.title}</Title>
       <Grid>
         {projectsData.map((project) => (
           <ProjectCard 
             key={project.id} 
-            onClick={() => handleCardClick(project)} 
+            onClick={() => handleCardClick(project.id)} 
             style={{ cursor: 'pointer' }}
           >
             <ProjectImage style={{ backgroundColor: project.bg }}>
@@ -34,12 +37,14 @@ const Portfolio = ({ onNavigate }) => {
             <ProjectInfo>
               <div>
                 <ProjectTitle>{project.title}</ProjectTitle>
-                <ProjectDesc>{project.desc}</ProjectDesc>
+                <ProjectDesc>
+                  {language === 'tr' ? project.desc_tr : project.desc_en}
+                </ProjectDesc>
               </div>
               <LinkButton 
                 onClick={(e) => {
                   e.stopPropagation();
-                  handleCardClick(project);
+                  handleCardClick(project.id);
                 }}
               >
                 ↗

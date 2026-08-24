@@ -1,18 +1,26 @@
+import { useNavigate } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext';
 import { HeroContainer, LeftColumn, Title, Highlight, CTAButton, RightColumn, Frame, FrameDecoration, BulbIcon, StarIcon } from './Hero.styles';
 
-const Hero = ({ onNavigate }) => {
+const Hero = () => {
+  const navigate = useNavigate();
+  const { t } = useLanguage();
+
   return (
     <HeroContainer id="home">
       <LeftColumn>
         <Title>
-          I design ✍️ top notch <br /> <Highlight>backends</Highlight>
+          {t.hero.titlePart1} <br /> 
+          <Highlight>{t.hero.titleHighlight}</Highlight> {t.hero.titlePart2}
         </Title>
-        <CTAButton onClick={() => onNavigate('portfolio')}>See Portfolio</CTAButton>
+        <CTAButton onClick={() => navigate('/portfolio')}>
+          {t.hero.seePortfolio}
+        </CTAButton>
       </LeftColumn>
       
       <RightColumn>
         <Frame>
-          <FrameDecoration>☻ B. ENES</FrameDecoration>
+          <FrameDecoration>{t.hero.badge}</FrameDecoration>
           <BulbIcon>💡</BulbIcon>
           <StarIcon />
           <span>☻</span>

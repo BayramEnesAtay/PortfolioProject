@@ -1,8 +1,13 @@
 import { useState, useEffect } from 'react';
-import { NavWrapper, NavContainer, Logo, NavLinks, NavLink } from './Navbar.styles';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext';
+import { NavWrapper, NavContainer, Logo, NavLinks, NavLink, LangToggle } from './Navbar.styles';
 
-const Navbar = ({ activeSection, onNavClick }) => {
+const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { language, toggleLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,35 +18,45 @@ const Navbar = ({ activeSection, onNavClick }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const isHomeActive = location.pathname === '/' || location.pathname === '/about';
+  const isPortfolioActive = location.pathname.startsWith('/portfolio');
+  const isContactActive = location.pathname === '/contact' || location.pathname === '/hire-me';
+
   return (
     <NavWrapper $scrolled={scrolled}>
       <NavContainer>
-        <Logo onClick={() => onNavClick('home')}>
+        <Logo onClick={() => navigate('/')}>
           Bayram Enes Atay
         </Logo>
         <NavLinks>
           <NavLink 
-            onClick={() => onNavClick('home')} 
-            $isActive={activeSection === 'home'}
+            onClick={() => navigate('/')} 
+            $isActive={isHomeActive}
             $activeColor="var(--bg-accent-blue)"
           >
-            About
+            {t.navbar.about}
           </NavLink>
           <NavLink 
-            onClick={() => onNavClick('portfolio')} 
-            $isActive={activeSection === 'portfolio'}
+            onClick={() => navigate('/portfolio')} 
+            $isActive={isPortfolioActive}
             $activeColor="var(--bg-accent-yellow)"
           >
-            Portfolio
+            {t.navbar.portfolio}
           </NavLink>
           <NavLink 
-            onClick={() => onNavClick('contact')} 
-            $isActive={activeSection === 'contact'}
+            onClick={() => navigate('/contact')} 
+            $isActive={isContactActive}
             $activeColor="var(--bg-accent-pink)"
-            $isLast
           >
-            Hire Me
+            {t.navbar.hireMe}
           </NavLink>
+          <LangToggle 
+            $lang={language} 
+            onClick={toggleLanguage}
+            title={language === 'tr' ? 'Switch to English' : 'Türkçe\'ye Geç'}
+          >
+             {language === 'tr' ? 'TR' : 'EN'}
+          </LangToggle>
         </NavLinks>
       </NavContainer>
     </NavWrapper>

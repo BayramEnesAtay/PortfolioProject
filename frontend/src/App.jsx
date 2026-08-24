@@ -1,80 +1,85 @@
-import { useState, useEffect } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { GlobalStyles } from './styles/GlobalStyles';
+import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import Navbar from './components/Navbar/Navbar';
-import Hero from './components/Hero/Hero';
-import TechStack from './components/TechStack/TechStack';
-import Services from './components/Services/Services';
-import Portfolio from './components/Portfolio/Portfolio';
-import Testimonials from './components/Testimonials/Testimonials';
-import ContactCTA from './components/ContactCTA/ContactCTA';
 import Footer from './components/Footer/Footer';
-import ProjectDetail from './components/ProjectDetail/ProjectDetail';
-import { projectsData } from './data/projects';
+import TransitionScreen from './components/TransitionScreen/TransitionScreen';
+
+// Code Splitting (Lazy Loading)
+const Home = lazy(() => import('./components/Home/Home'));
+const Portfolio = lazy(() => import('./components/Portfolio/Portfolio'));
+const ProjectDetail = lazy(() => import('./components/ProjectDetail/ProjectDetail'));
+const ContactCTA = lazy(() => import('./components/ContactCTA/ContactCTA'));
+const NotFound = lazy(() => import('./components/NotFound/NotFound'));
 
 const MainContent = styled.main`
   width: 100%;
 `;
 
-function App() {
-  const [currentPage, setCurrentPage] = useState('home');
-  const [selectedProject, setSelectedProject] = useState(projectsData[0]);
+// Rota degistiginde otomatik tepeye kaydiran ve kisa gecis hissi veren yonetici
+const RouteTransitionWatcher = () => {
+  const location = useLocation();
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
-    // Sayfa değiştiğinde her zaman en üste kaydır
     window.scrollTo(0, 0);
-  }, [currentPage]);
+    setIsTransitioning(true);
+    const timer = setTimeout(() => {
+      setIsTransitioning(false);
+    }, 450);
 
-  const handleNavigate = (page, data = null) => {
-    setCurrentPage(page);
-    if (data) {
-      if (typeof data === 'string') {
-        const found = projectsData.find(p => p.id === data);
-        if (found) setSelectedProject(found);
-      } else {
-        setSelectedProject(data);
-      }
-    }
-  };
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
+
+  return isTransitioning ? <TransitionScreen /> : null;
+};
+
+function AppContent() {
+  const { isLangTransitioning, t } = useLanguage();
 
   return (
     <>
       <GlobalStyles />
-      <Navbar 
-        activeSection={currentPage === 'projectDetail' ? 'portfolio' : currentPage} 
-        onNavClick={handleNavigate} 
-      />
+      <Navbar />
+      <RouteTransitionWatcher />
+      
+      {/* Dil degisimi sirasinda acilan yukleme ekrani */}
+      {isLangTransitioning && (
+        <TransitionScreen 
+          label={t.transition.langSwitch} 
+          status={t.transition.langStatus} 
+        />
+      )}
       
       <MainContent>
-        {currentPage === 'home' && (
-          <>
-            <Hero onNavigate={() => handleNavigate('portfolio')} />
-            <TechStack />
-            <Services />
-          </>
-        )}
-
-        {currentPage === 'portfolio' && (
-          <>
-            <Portfolio onNavigate={handleNavigate} />
-            <Testimonials />
-          </>
-        )}
-
-        {currentPage === 'projectDetail' && (
-          <ProjectDetail 
-            project={selectedProject || projectsData[0]} 
-            onBack={() => handleNavigate('portfolio')} 
-          />
-        )}
-
-        {currentPage === 'contact' && (
-          <ContactCTA />
-        )}
-
+        <Suspense fallback={<TransitionScreen />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<Home />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/portfolio/:id" element={<ProjectDetail />} />
+            <Route path="/contact" element={<ContactCTA />} />
+            <Route path="/hire-me" element={<ContactCTA />} />
+            {/* Gecersiz URL'ler icin 404 Skeleton Sayfasi */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+        
         <Footer />
       </MainContent>
     </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <LanguageProvider>
+        <AppContent />
+      </LanguageProvider>
+    </BrowserRouter>
   );
 }
 

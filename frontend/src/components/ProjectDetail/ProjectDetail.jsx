@@ -1,45 +1,142 @@
+import { useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext';
 import { projectsData } from '../../data/projects';
+import NotFound from '../NotFound/NotFound';
 import { 
   DetailContainer, 
   HeaderBox, 
   BackButton, 
-  Badge,
+  Badge, 
   Title, 
   Subtitle, 
-  TwoColumnBentoGrid,
-  BentoRow,
-  BentoCell,
-  CellHeader,
-  CellTitle,
-  CellTag,
+  TwoColumnBentoGrid, 
+  BentoRow, 
+  BentoCell, 
+  CellHeader, 
+  CellTitle, 
+  CellTag, 
   TextContent, 
   TechTags, 
   TechTag, 
-  LearningsSection,
-  LearningsHeader,
-  LearningsTitle,
-  LearningsGrid,
-  LearningCard,
-  LearningIndex,
-  LearningText,
-  ActionRow,
-  ActionButton
+  LearningsSection, 
+  LearningsHeader, 
+  LearningsTitle, 
+  LearningsGrid, 
+  LearningCard, 
+  LearningIndex, 
+  LearningText, 
+  ActionRow, 
+  ActionButton, 
+  DrawerTriggerButton, 
+  DrawerOverlay, 
+  DrawerContainer, 
+  DrawerHeader, 
+  DrawerTitle, 
+  DrawerCloseButton, 
+  DrawerBody, 
+  CommentFormCard, 
+  FormTitle, 
+  FormInput, 
+  FormTextarea, 
+  FormSubmitBtn, 
+  CommentsList, 
+  CommentCard, 
+  CommentHeader, 
+  AuthorInfo, 
+  AuthorName, 
+  AuthorRole, 
+  CommentDate, 
+  CommentText, 
+  CommentFooter, 
+  UpvoteButton 
 } from './ProjectDetail.styles';
 
-const ProjectDetail = ({ project, onBack }) => {
-  // Eger project prop'u bos gelirse varsayilan olarak ilk projeyi al
-  const currentProject = project || projectsData[0];
+const ProjectDetail = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const { language, t } = useLanguage();
+
+  // URL'deki id parametresine gore projeyi bul
+  const currentProject = projectsData.find(p => p.id === id);
+
+  // Eger URL'deki id bulunamazsa NotFound skeleton goster
+  if (!currentProject) {
+    return <NotFound />;
+  }
+
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [comments, setComments] = useState(currentProject.comments || []);
+  const [likedMap, setLikedMap] = useState({});
+  const [newComment, setNewComment] = useState({
+    author: '',
+    role: '',
+    text: ''
+  });
+
+  const handleFormChange = (e) => {
+    setNewComment(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }));
+  };
+
+  const handleCommentSubmit = (e) => {
+    e.preventDefault();
+    if (!newComment.author || !newComment.text) return;
+
+    const created = {
+      id: Date.now(),
+      author: newComment.author,
+      role: newComment.role || (language === 'tr' ? 'Ziyaretçi Mühendis' : 'Visiting Engineer'),
+      date: language === 'tr' ? 'Bugün' : 'Today',
+      text_tr: newComment.text,
+      text_en: newComment.text,
+      upvotes: 1
+    };
+
+    setComments(prev => [created, ...prev]);
+    setNewComment({ author: '', role: '', text: '' });
+  };
+
+  const handleUpvote = (commentId) => {
+    setLikedMap(prev => {
+      const isAlreadyLiked = prev[commentId];
+      const nextState = { ...prev, [commentId]: !isAlreadyLiked };
+
+      setComments(prevComments => 
+        prevComments.map(c => {
+          if (c.id === commentId) {
+            return {
+              ...c,
+              upvotes: isAlreadyLiked ? c.upvotes - 1 : c.upvotes + 1
+            };
+          }
+          return c;
+        })
+      );
+
+      return nextState;
+    });
+  };
+
+  const desc = language === 'tr' ? currentProject.desc_tr : currentProject.desc_en;
+  const badge = language === 'tr' ? currentProject.badge_tr : currentProject.badge_en;
+  const overview = language === 'tr' ? currentProject.overview_tr : currentProject.overview_en;
+  const problem = language === 'tr' ? currentProject.problem_tr : currentProject.problem_en;
+  const solution = language === 'tr' ? currentProject.solution_tr : currentProject.solution_en;
+  const learnings = language === 'tr' ? currentProject.learnings_tr : currentProject.learnings_en;
 
   return (
     <DetailContainer>
       {/* Üst Başlık Kartı */}
       <HeaderBox $bg={currentProject.bg}>
-        <BackButton onClick={onBack}>
-          ← Geri Dön
+        <BackButton onClick={() => navigate('/portfolio')}>
+          {t.projectDetail.back}
         </BackButton>
-        {currentProject.badge && <Badge>{currentProject.badge}</Badge>}
+        {badge && <Badge>{badge}</Badge>}
         <Title>{currentProject.title}</Title>
-        <Subtitle>{currentProject.desc}</Subtitle>
+        <Subtitle>{desc}</Subtitle>
       </HeaderBox>
 
       {/* 2 SÜTUNLU BİRLEŞİK BENTO GRID */}
@@ -48,21 +145,21 @@ const ProjectDetail = ({ project, onBack }) => {
         <BentoRow>
           <BentoCell $bg="var(--bg-accent-pink)">
             <CellHeader>
-              <CellTitle>Teknik Genel Bakış</CellTitle>
-              <CellTag>Architecture</CellTag>
+              <CellTitle>{t.projectDetail.overviewTitle}</CellTitle>
+              <CellTag>{t.projectDetail.overviewTag}</CellTag>
             </CellHeader>
             <TextContent>
-              {currentProject.overview}
+              {overview}
             </TextContent>
           </BentoCell>
 
           <BentoCell $bg="#fff" $noBorderRight>
             <CellHeader>
-              <CellTitle>Tech Stack</CellTitle>
-              <CellTag>Stack</CellTag>
+              <CellTitle>{t.projectDetail.techStackTitle}</CellTitle>
+              <CellTag>{t.projectDetail.techStackTag}</CellTag>
             </CellHeader>
             <TextContent style={{ marginBottom: '14px', fontSize: '13px', color: '#555' }}>
-              Kullanılan diller, kütüphaneler ve altyapı araçları:
+              {t.projectDetail.techStackSub}
             </TextContent>
             <TechTags>
               {currentProject.technologies?.map((tech, index) => (
@@ -76,35 +173,35 @@ const ProjectDetail = ({ project, onBack }) => {
         <BentoRow $isLast>
           <BentoCell $bg="#fff">
             <CellHeader>
-              <CellTitle $color="#b71c1c">Karşılaşılan Sorun</CellTitle>
-              <CellTag $bg="#b71c1c">Challenge</CellTag>
+              <CellTitle $color="#b71c1c">{t.projectDetail.problemTitle}</CellTitle>
+              <CellTag $bg="#b71c1c">{t.projectDetail.problemTag}</CellTag>
             </CellHeader>
             <TextContent>
-              {currentProject.problem}
+              {problem}
             </TextContent>
           </BentoCell>
 
           <BentoCell $bg="var(--bg-accent-yellow)" $noBorderRight $noBorderBottomMobile>
             <CellHeader>
-              <CellTitle>Nasıl Çözüldü? (Mühendislik Çözümü)</CellTitle>
-              <CellTag>Solution</CellTag>
+              <CellTitle>{t.projectDetail.solutionTitle}</CellTitle>
+              <CellTag>{t.projectDetail.solutionTag}</CellTag>
             </CellHeader>
             <TextContent>
-              {currentProject.solution}
+              {solution}
             </TextContent>
           </BentoCell>
         </BentoRow>
       </TwoColumnBentoGrid>
 
       {/* AYRI BÖLÜM: Mühendislik Kazanımları / Bana Ne Kattı? */}
-      {currentProject.learnings && currentProject.learnings.length > 0 && (
+      {learnings && learnings.length > 0 && (
         <LearningsSection>
           <LearningsHeader>
-            <LearningsTitle>Mühendislik Kazanımları // Bana Ne Kattı?</LearningsTitle>
-            <CellTag>Takeaways</CellTag>
+            <LearningsTitle>{t.projectDetail.learningsTitle}</LearningsTitle>
+            <CellTag>{t.projectDetail.learningsTag}</CellTag>
           </LearningsHeader>
           <LearningsGrid>
-            {currentProject.learnings.map((learning, index) => (
+            {learnings.map((learning, index) => (
               <LearningCard key={index}>
                 <LearningIndex>// {String(index + 1).padStart(2, '0')}</LearningIndex>
                 <LearningText>{learning}</LearningText>
@@ -114,24 +211,104 @@ const ProjectDetail = ({ project, onBack }) => {
         </LearningsSection>
       )}
 
-      {/* Aksiyon Butonları */}
+      {/* Aksiyon Butonları & Drawer Tetikleyici */}
       <ActionRow>
         <ActionButton 
           href={currentProject.githubUrl || "#"} 
           target="_blank" 
           rel="noopener noreferrer"
         >
-          GitHub Deposu ↗
+          {t.projectDetail.githubBtn}
         </ActionButton>
+
         <ActionButton 
           $primary 
           href={currentProject.docsUrl || "#"} 
           target="_blank" 
           rel="noopener noreferrer"
         >
-          Swagger API Canlı Dokümantasyon ↗
+          {t.projectDetail.swaggerBtn}
         </ActionButton>
+
+        <DrawerTriggerButton onClick={() => setIsDrawerOpen(true)}>
+          {t.projectDetail.commentsBtn} ({comments.length})
+        </DrawerTriggerButton>
       </ActionRow>
+
+      {/* SAĞDAN KAYARAK AÇILAN PANEL (OFFCANVAS DRAWER) */}
+      <DrawerOverlay $isOpen={isDrawerOpen} onClick={() => setIsDrawerOpen(false)} />
+      
+      <DrawerContainer $isOpen={isDrawerOpen}>
+        <DrawerHeader>
+          <DrawerTitle>
+            {t.projectDetail.drawerTitle}
+            <CellTag>{comments.length}</CellTag>
+          </DrawerTitle>
+          <DrawerCloseButton onClick={() => setIsDrawerOpen(false)} title="Close">
+            ✕
+          </DrawerCloseButton>
+        </DrawerHeader>
+
+        <DrawerBody>
+          {/* Yorum Ekleme Formu */}
+          <CommentFormCard>
+            <FormTitle>{t.projectDetail.drawerFormTitle}</FormTitle>
+            <form onSubmit={handleCommentSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <FormInput 
+                type="text" 
+                name="author"
+                placeholder={t.projectDetail.drawerNamePlaceholder}
+                required
+                value={newComment.author}
+                onChange={handleFormChange}
+              />
+              <FormInput 
+                type="text" 
+                name="role"
+                placeholder={t.projectDetail.drawerRolePlaceholder}
+                value={newComment.role}
+                onChange={handleFormChange}
+              />
+              <FormTextarea 
+                name="text"
+                placeholder={t.projectDetail.drawerTextPlaceholder}
+                required
+                value={newComment.text}
+                onChange={handleFormChange}
+              />
+              <FormSubmitBtn type="submit">
+                {t.projectDetail.drawerSubmit}
+              </FormSubmitBtn>
+            </form>
+          </CommentFormCard>
+
+          {/* Yorumlar Listesi */}
+          <CommentsList>
+            {comments.map((comment) => (
+              <CommentCard key={comment.id}>
+                <CommentHeader>
+                  <AuthorInfo>
+                    <AuthorName>{comment.author}</AuthorName>
+                    <AuthorRole>{comment.role}</AuthorRole>
+                  </AuthorInfo>
+                  <CommentDate>{comment.date}</CommentDate>
+                </CommentHeader>
+                <CommentText>
+                  {language === 'tr' ? (comment.text_tr || comment.text) : (comment.text_en || comment.text)}
+                </CommentText>
+                <CommentFooter>
+                  <UpvoteButton 
+                    $liked={likedMap[comment.id]} 
+                    onClick={() => handleUpvote(comment.id)}
+                  >
+                    {t.projectDetail.drawerUpvote} ({comment.upvotes})
+                  </UpvoteButton>
+                </CommentFooter>
+              </CommentCard>
+            ))}
+          </CommentsList>
+        </DrawerBody>
+      </DrawerContainer>
     </DetailContainer>
   );
 };

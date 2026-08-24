@@ -61,7 +61,7 @@ export const NavLink = styled.a`
   padding: 12px 24px;
   font-weight: 700;
   font-size: 14px;
-  border-right: ${props => props.$isLast ? 'none' : 'var(--border-main)'};
+  border-right: var(--border-main);
   background-color: ${props => props.$isActive ? props.$activeColor : 'transparent'};
   cursor: pointer;
   transition: background-color 0.2s ease;
@@ -75,5 +75,29 @@ export const NavLink = styled.a`
 
   @media (max-width: 768px) {
     padding: 12px 8px;
+  }
+`;
+
+export const LangToggle = styled.button`
+  padding: 12px 18px;
+  font-weight: 900;
+  font-size: 13px;
+  background-color: ${props => props.$lang === 'tr' ? 'var(--bg-accent-yellow)' : 'var(--bg-accent-blue)'};
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+  user-select: none;
+  letter-spacing: 0.5px;
+
+  &:hover {
+    background-color: var(--bg-accent-pink);
+  }
+
+  @media (max-width: 768px) {
+    justify-content: center;
+    padding: 10px;
   }
 `;

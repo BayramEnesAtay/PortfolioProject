@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLanguage } from '../../context/LanguageContext';
 import { 
   ContactContainer, 
   CTAWrapper, 
@@ -24,6 +25,7 @@ import {
 } from './ContactCTA.styles';
 
 const ContactCTA = () => {
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -58,22 +60,22 @@ const ContactCTA = () => {
   return (
     <ContactContainer id="contact">
       <CTAWrapper>
-        <StatusBadge>Available for Backend / Architecture Roles</StatusBadge>
+        <StatusBadge>{t.contact.statusBadge}</StatusBadge>
         
-        <Title>Let's build your architecture</Title>
+        <Title>{t.contact.title}</Title>
         
         <Description>
-          Performanslı, güvenli ve ölçeklenebilir backend sistemleri, RESTful API mimarileri veya veritabanı modellemesi için doğrudan mesaj bırakabilirsiniz.
+          {t.contact.description}
         </Description>
 
         <InfoPills>
-          <InfoPill>Yanıt Süresi: &lt; 24 Saat</InfoPill>
-          <InfoPill>Stack: Spring Boot & PostgreSQL</InfoPill>
-          <InfoPill>Mimari: Clean Code & Layered</InfoPill>
+          <InfoPill>{t.contact.pillResponse}</InfoPill>
+          <InfoPill>{t.contact.pillStack}</InfoPill>
+          <InfoPill>{t.contact.pillArch}</InfoPill>
         </InfoPills>
 
         <ContactButton onClick={() => setIsOpen(true)}>
-          Send us message ↗
+          {t.contact.button}
         </ContactButton>
       </CTAWrapper>
 
@@ -86,75 +88,75 @@ const ContactCTA = () => {
             </CloseButton>
 
             <ModalHeader>
-              <ModalTitle>Mesaj Gönder //</ModalTitle>
+              <ModalTitle>{t.contact.modalTitle}</ModalTitle>
               <ModalSubtitle>
-                Geri Bildirim Modülü: Doğrudan backend ve veritabanı katmanına iletilir.
+                {t.contact.modalSubtitle}
               </ModalSubtitle>
             </ModalHeader>
 
             {submitted ? (
               <SuccessBox>
                 <h4 style={{ fontSize: '18px', fontWeight: 900, textTransform: 'uppercase' }}>
-                  Mesajınız Alındı!
+                  {t.contact.successTitle}
                 </h4>
                 <p style={{ fontSize: '14px', lineHeight: 1.5, fontWeight: 600 }}>
-                  Geri bildiriminiz başarıyla iletildi. Backend servisleriniz bağlandığında bu mesaj doğrudan PostgreSQL veritabanınıza kaydedilecektir.
+                  {t.contact.successText}
                 </p>
                 <SubmitButton onClick={handleClose} style={{ marginTop: '12px' }}>
-                  Tamam
+                  {t.contact.successClose}
                 </SubmitButton>
               </SuccessBox>
             ) : (
               <Form onSubmit={handleSubmit}>
                 <FormGroup>
-                  <Label>Ad Soyad</Label>
+                  <Label>{t.contact.labelName}</Label>
                   <Input 
                     type="text" 
                     name="name"
                     required
-                    placeholder="Adınız ve Soyadınız"
+                    placeholder={t.contact.namePlaceholder}
                     value={formData.name}
                     onChange={handleChange}
                   />
                 </FormGroup>
 
                 <FormGroup>
-                  <Label>E-Posta Adresi</Label>
+                  <Label>{t.contact.labelEmail}</Label>
                   <Input 
                     type="email" 
                     name="email"
                     required
-                    placeholder="ornek@sirket.com"
+                    placeholder={t.contact.emailPlaceholder}
                     value={formData.email}
                     onChange={handleChange}
                   />
                 </FormGroup>
 
                 <FormGroup>
-                  <Label>Konu Başlığı</Label>
+                  <Label>{t.contact.labelSubject}</Label>
                   <Input 
                     type="text" 
                     name="subject"
                     required
-                    placeholder="Proje Teklifi / İş Birliği / Soru"
+                    placeholder={t.contact.subjectPlaceholder}
                     value={formData.subject}
                     onChange={handleChange}
                   />
                 </FormGroup>
 
                 <FormGroup>
-                  <Label>Mesaj İçeriği</Label>
+                  <Label>{t.contact.labelMessage}</Label>
                   <Textarea 
                     name="message"
                     required
-                    placeholder="Projeniz veya iletmek istediğiniz detayları buraya yazabilirsiniz..."
+                    placeholder={t.contact.messagePlaceholder}
                     value={formData.message}
                     onChange={handleChange}
                   />
                 </FormGroup>
 
                 <SubmitButton type="submit">
-                  Mesajı Gönder ↗
+                  {t.contact.submitBtn}
                 </SubmitButton>
               </Form>
             )}
