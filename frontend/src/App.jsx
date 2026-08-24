@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { GlobalStyles } from './styles/GlobalStyles';
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
+import { PixelCursorTrail } from '@/components/ui/pixel-trail';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import TransitionScreen from './components/TransitionScreen/TransitionScreen';
@@ -43,6 +44,7 @@ function AppContent() {
   return (
     <>
       <GlobalStyles />
+      <PixelCursorTrail colors={['#000000', '#ffde59']} />
       <Navbar />
       <RouteTransitionWatcher />
       

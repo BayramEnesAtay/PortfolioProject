@@ -90,7 +90,6 @@ export const translations = {
       ]
     },
     contact: {
-      statusBadge: "Backend & Mimari Rolleri İçin Uygun",
       title: "Mimarini Birlikte İnşa Edelim",
       description: "Performanslı, güvenli ve ölçeklenebilir backend sistemleri, RESTful API mimarileri veya veritabanı modellemesi için doğrudan mesaj bırakabilirsiniz.",
       pillResponse: "Yanıt Süresi: < 24 Saat",

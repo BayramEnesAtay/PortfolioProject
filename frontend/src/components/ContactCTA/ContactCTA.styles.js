@@ -1,10 +1,18 @@
 import styled from 'styled-components';
 
-export const ContactContainer = styled.section`
+export const ContactPageWrapper = styled.div`
+  width: 100%;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 140px var(--spacing-lg) var(--spacing-xl);
+`;
+
+export const ContactContainer = styled.section`
   max-width: 900px;
+  width: 100%;
   margin: 0 auto;
-  min-height: calc(100vh - 100px);
   display: flex;
   flex-direction: column;
   align-items: center;
