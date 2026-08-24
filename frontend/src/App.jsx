@@ -9,6 +9,7 @@ import TransitionScreen from './components/TransitionScreen/TransitionScreen';
 
 // Code Splitting (Lazy Loading)
 const Home = lazy(() => import('./components/Home/Home'));
+const Experience = lazy(() => import('./components/Experience/Experience'));
 const Portfolio = lazy(() => import('./components/Portfolio/Portfolio'));
 const ProjectDetail = lazy(() => import('./components/ProjectDetail/ProjectDetail'));
 const ContactCTA = lazy(() => import('./components/ContactCTA/ContactCTA'));
@@ -58,6 +59,7 @@ function AppContent() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<Home />} />
+            <Route path="/experience" element={<Experience />} />
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/portfolio/:id" element={<ProjectDetail />} />
             <Route path="/contact" element={<ContactCTA />} />

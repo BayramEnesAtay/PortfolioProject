@@ -66,6 +66,7 @@ export const ProjectDesc = styled.p`
   font-size: 14px;
   color: #555;
   margin-top: 8px;
+  line-height: 1.5;
 `;
 
 export const LinkButton = styled.button`
@@ -79,9 +80,76 @@ export const LinkButton = styled.button`
   align-items: center;
   justify-content: center;
   font-size: 20px;
+  flex-shrink: 0;
   
   &:hover {
     background-color: var(--bg-accent-yellow);
     color: #000;
+  }
+`;
+
+/* NEO-BRUTALIST PAGINATION */
+export const PaginationContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 48px;
+  flex-wrap: wrap;
+`;
+
+export const PaginationNavButton = styled.button`
+  background-color: #fff;
+  color: #000;
+  border: var(--border-main);
+  box-shadow: 4px 4px 0px 0px #000;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 900;
+  cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
+  opacity: ${props => props.disabled ? 0.35 : 1};
+  transition: all 0.15s ease;
+  user-select: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  &:hover:not(:disabled) {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px 0px #000;
+    background-color: var(--bg-accent-blue);
+  }
+
+  &:active:not(:disabled) {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px 0px #000;
+  }
+`;
+
+export const PageNumberButton = styled.button`
+  width: 44px;
+  height: 44px;
+  background-color: ${props => props.$isActive ? 'var(--bg-accent-yellow)' : '#fff'};
+  color: #000;
+  border: var(--border-main);
+  box-shadow: ${props => props.$isActive ? '4px 4px 0px 0px #000' : '3px 3px 0px 0px #000'};
+  transform: ${props => props.$isActive ? 'translate(-2px, -2px)' : 'none'};
+  font-size: 16px;
+  font-weight: 900;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  user-select: none;
+
+  &:hover {
+    background-color: ${props => props.$isActive ? 'var(--bg-accent-yellow)' : 'var(--bg-accent-pink)'};
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0px 0px #000;
+  }
+
+  &:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px 0px #000;
   }
 `;

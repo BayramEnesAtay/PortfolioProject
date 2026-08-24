@@ -19,6 +19,7 @@ const Navbar = () => {
   }, []);
 
   const isHomeActive = location.pathname === '/' || location.pathname === '/about';
+  const isExperienceActive = location.pathname.startsWith('/experience');
   const isPortfolioActive = location.pathname.startsWith('/portfolio');
   const isContactActive = location.pathname === '/contact' || location.pathname === '/hire-me';
 
@@ -35,6 +36,13 @@ const Navbar = () => {
             $activeColor="var(--bg-accent-blue)"
           >
             {t.navbar.about}
+          </NavLink>
+          <NavLink 
+            onClick={() => navigate('/experience')} 
+            $isActive={isExperienceActive}
+            $activeColor="var(--bg-accent-orange)"
+          >
+            {t.navbar.experience || 'Deneyim'}
           </NavLink>
           <NavLink 
             onClick={() => navigate('/portfolio')} 
@@ -55,7 +63,7 @@ const Navbar = () => {
             onClick={toggleLanguage}
             title={language === 'tr' ? 'Switch to English' : 'Türkçe\'ye Geç'}
           >
-             {language === 'tr' ? 'TR' : 'EN'}
+            🌐 {language === 'tr' ? 'TR' : 'EN'}
           </LangToggle>
         </NavLinks>
       </NavContainer>

@@ -2,6 +2,7 @@ export const translations = {
   tr: {
     navbar: {
       about: "Hakkımda",
+      experience: "Deneyim",
       portfolio: "Portfolyo",
       hireMe: "İletişim",
       langSwitch: "TR / EN"
@@ -31,9 +32,18 @@ export const translations = {
       architectureTitle: "Sistem Mimarisi",
       architectureText: "Katmanlı mimari (Layered Architecture) ve sürdürülebilir sistem tasarımı ile kurumsal standartlarda kodlama yapıyorum."
     },
+    experience: {
+      title: "Mühendislik Deneyimi //",
+      subtitle: "Katmanlı mimari, güvenli backend servisleri ve kurumsal yazılım geliştirme geçmişim:",
+      responsibilitiesTitle: "Temel Sorumluluklar & Mühendislik Katkıları:",
+      skillsTitle: "Kullanılan Teknolojiler:"
+    },
     portfolio: {
       title: "Portfolyom",
-      viewProject: "İncele"
+      viewProject: "İncele",
+      prevPage: "← Önceki",
+      nextPage: "Sonraki →",
+      pageOf: "Sayfa"
     },
     projectDetail: {
       back: "← Geri Dön",
@@ -108,7 +118,7 @@ export const translations = {
       scannerTitle: "ROUTE_DEBUGGER.SH",
       scanningPill: "TARANIYOR",
       scannedStatus: "Yönlendirme ağacı tarandı: 0 eşleşme bulundu:",
-      homeBtn: "← Ana Sayfaya Dön"
+      homeBtn: "← Ana Sayfaya Dön (Home)"
     },
     transition: {
       loading: "Yükleniyor //",
@@ -124,6 +134,7 @@ export const translations = {
   en: {
     navbar: {
       about: "About",
+      experience: "Experience",
       portfolio: "Portfolio",
       hireMe: "Hire Me",
       langSwitch: "EN / TR"
@@ -153,9 +164,18 @@ export const translations = {
       architectureTitle: "System Architecture",
       architectureText: "Enterprise-grade layered architecture with modular, testable, and maintainable clean code standards."
     },
+    experience: {
+      title: "Engineering Experience //",
+      subtitle: "My background in layered architecture, secure backend services, and enterprise software engineering:",
+      responsibilitiesTitle: "Key Responsibilities & Engineering Impact:",
+      skillsTitle: "Technologies Used:"
+    },
     portfolio: {
       title: "My Portfolio",
-      viewProject: "View"
+      viewProject: "View",
+      prevPage: "← Prev",
+      nextPage: "Next →",
+      pageOf: "Page"
     },
     projectDetail: {
       back: "← Back",

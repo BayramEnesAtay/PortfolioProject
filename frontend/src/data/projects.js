@@ -131,5 +131,101 @@ export const projectsData = [
     ],
     githubUrl: "https://github.com",
     docsUrl: "https://swagger.io"
+  },
+  {
+    id: "payment-gateway",
+    title: "Fintech Payment Gateway",
+    subtitle: "Idempotency & Webhook Orchestration",
+    bg: "var(--bg-accent-pink)",
+    badge_tr: "Fintech & Ödeme",
+    badge_en: "Fintech & Payments",
+    desc_tr: "Çift ödeme riskini engelleyen Idempotency anahtarları, otomatik kuyruk tekrarı (Retry Mechanism) ve güvenli Webhook mimarisine sahip ödeme motoru.",
+    desc_en: "High-reliability payment processing engine featuring Idempotency keys, automated exponential backoff retries, and secure webhook validation.",
+    overview_tr: "Kullanıcıların ve üçüncü parti sağlayıcıların finansal işlemlerini sıfır hata toleransıyla yürüten, asenkron bildirimleri HMAC SHA-256 imzalarıyla doğrulayan kurumsal ödeme orkestrasyon altyapısı.",
+    overview_en: "A zero-tolerance financial transaction processing gateway that handles asynchronous payment confirmations with HMAC SHA-256 signature verification and resilient idempotency locks.",
+    technologies: ["Java 17", "Spring Boot", "PostgreSQL", "Redis Locks", "RabbitMQ", "HMAC SHA-256"],
+    problem_tr: "Kullanıcıların butona mükerrer basması veya ağ kopmaları sonucu aynı sipariş için birden fazla para çekimi yapılması ve harici sağlayıcı kesintilerinde bildirimlerin kaybolması.",
+    problem_en: "Network timeouts and impatient double-clicks caused duplicate credit card debits, while external provider downtime resulted in lost transaction webhooks.",
+    solution_tr: "Redis tabanlı Idempotency Key ve Distributed Lock deseni uygulandı. Başarısız olan webhook bildirimleri için RabbitMQ Dead Letter Queue (DLQ) ve Exponential Backoff tekrar mekanizması kuruldu.",
+    solution_en: "Implemented Redis-based Idempotency Key filters with Distributed Locks. Configured RabbitMQ Dead Letter Queues (DLQ) with Exponential Backoff retry policies to guarantee delivery.",
+    learnings_tr: [
+      "Finansal işlemlerde çift çekimi önlemek için Idempotency ve Distributed Lock kurgulama.",
+      "RabbitMQ ile güvenli mesaj iletimi ve Dead Letter Queue (DLQ) mimarisi.",
+      "HMAC SHA-256 imza doğrulama ile güvenli webhook entegrasyonu."
+    ],
+    learnings_en: [
+      "Mastered financial idempotency keys and distributed locking to prevent duplicate transactions.",
+      "Engineered resilient message acknowledgment and Dead Letter Queue strategies via RabbitMQ.",
+      "Secured webhook endpoints against tampering using cryptographic HMAC SHA-256 signatures."
+    ],
+    comments: [
+      { id: 1, author: "Gökhan Keskin", role: "Staff Fintech Engineer", date: "24 Ağu 2026", text_tr: "Distributed lock ve DLQ yapısı finansal ölçekte olmazsa olmazdır, mimari çok temiz düşünülmüş.", text_en: "Distributed locking and DLQ retry pipeline are mission-critical for fintech. Superb execution.", upvotes: 17 }
+    ],
+    githubUrl: "https://github.com",
+    docsUrl: "https://swagger.io"
+  },
+  {
+    id: "realtime-notifications",
+    title: "Real-Time Notification Core",
+    subtitle: "WebSocket & Redis Pub/Sub",
+    bg: "var(--bg-accent-blue)",
+    badge_tr: "Gerçek Zamanlı",
+    badge_en: "Real-Time Core",
+    desc_tr: "WebSocket, STOMP protokolü ve Redis Pub/Sub altyapısıyla yatayda ölçeklenebilen anlık bildirim ve etkinlik motoru.",
+    desc_en: "Horizontally scalable real-time notification and event-dispatching service powered by WebSockets, STOMP, and Redis Pub/Sub.",
+    overview_tr: "Milyonlarca anlık istemciye gecikmesiz uyarı, canlı durum güncellemesi ve mesaj ileten, küme (cluster) ortamında çalışan yüksek performanslı WebSocket servisi.",
+    overview_en: "A cluster-ready WebSocket engine broadcasting real-time alerts and state changes to connected clients with sub-millisecond dispatch times via Redis Pub/Sub.",
+    technologies: ["Spring WebSocket", "STOMP", "Redis Pub/Sub", "PostgreSQL", "Docker", "Netty"],
+    problem_tr: "Birden fazla sunucu (node) devreye girdiğinde WebSocket oturumlarının tek bir sunucuda izole kalması ve diğer sunuculardaki kullanıcılara anlık mesajların iletilememesi.",
+    problem_en: "When scaling across multi-node clusters, WebSocket client sessions remained pinned to individual instances, causing cross-node broadcast failures.",
+    solution_tr: "Redis Pub/Sub mesaj aracısı olarak entegre edilerek tüm küme sunucuları birbirine bağlandı. STOMP protokolü üzerinden kanal tabanlı abonelik ve JWT el sıkışması (handshake) güvenliği sağlandı.",
+    solution_en: "Integrated Redis Pub/Sub as an inter-cluster message broker. Implemented STOMP channel authorization and secure JWT WebSocket handshake interceptors.",
+    learnings_tr: [
+      "Çoklu sunucu mimarisinde WebSocket oturumlarını Redis Pub/Sub ile senkronize etme.",
+      "STOMP protokolü ile yetkilendirilmiş konu (topic) abonelik yönetimi.",
+      "Yüksek eşzamanlı bağlantılarda bellek ve kaynak optimizasyonu."
+    ],
+    learnings_en: [
+      "Synchronized multi-instance WebSocket sessions using Redis Pub/Sub message relay.",
+      "Enforced granular topic subscription permissions using STOMP interceptors.",
+      "Optimized thread pools and memory allocations under heavy concurrent socket loads."
+    ],
+    comments: [
+      { id: 1, author: "Deniz Yücel", role: "DevOps & SRE Lead", date: "24 Ağu 2026", text_tr: "Yatayda kümelenmiş sunucular arasında Redis Pub/Sub köprüsü kurmak harika bir çözüm.", text_en: "Redis Pub/Sub bridging across scaled cluster nodes is the definitive architecture for WebSockets.", upvotes: 13 }
+    ],
+    githubUrl: "https://github.com",
+    docsUrl: "https://swagger.io"
+  },
+  {
+    id: "auth-iam-service",
+    title: "Enterprise IAM & OAuth2 Hub",
+    subtitle: "Identity, SSO & Multi-Tenant Security",
+    bg: "var(--bg-accent-yellow)",
+    badge_tr: "Kimlik & IAM",
+    badge_en: "Identity & IAM",
+    desc_tr: "Spring Authorization Server ile sıfırdan inşa edilmiş OAuth2.0 / OpenID Connect tabanlı kurumsal kimlik ve Single Sign-On (SSO) merkezi.",
+    desc_en: "Centralized enterprise Identity & Access Management (IAM) server implementing OAuth2.0, OpenID Connect, and multi-tenant Single Sign-On (SSO).",
+    overview_tr: "Tüm mikroservislerin kimlik doğrulama, token rotasyonu, izin matrisi ve kurumsal tek oturum açma (SSO) süreçlerini merkezi olarak yöneten güvenlik çekirdeği.",
+    overview_en: "A centralized security backbone handling federated token issuance, cryptographic key rotation, and multi-tenant authorization policies across distributed systems.",
+    technologies: ["Spring Authorization Server", "OAuth2.0", "OpenID Connect", "PostgreSQL", "RSA Cryptography", "Redis"],
+    problem_tr: "Her mikroservisin kendi içinde ayrı kimlik doğrulama yapmasının kod tekrarına, güvenlik açıklarına ve merkezi olmayan yetkilendirme karmaşasına sebep olması.",
+    problem_en: "Decentralized authentication across individual microservices led to code duplication, inconsistent token validation, and severe privilege management sprawl.",
+    solution_tr: "Spring Authorization Server ile merkezi bir OAuth2 Authorization Server kuruldu. Asimetrik RSA anahtar çiftleri ile imzalanan JWT erişim belirteçleri ve JWKS endpoint'i yayına alındı.",
+    solution_en: "Built a centralized Spring Authorization Server. Configured asymmetric RSA key rotation with live JWKS verification endpoints for seamless microservice validation.",
+    learnings_tr: [
+      "OAuth2.0 Authorization Code PKCE ve Client Credentials akışlarını sıfırdan tasarlama.",
+      "Asimetrik kriptografi (RSA) ve JWKS endpoint yönetimi.",
+      "Multi-tenant (çok kiracılı) veri ve kullanıcı izolasyonu standartları."
+    ],
+    learnings_en: [
+      "Implemented full OAuth2.0 Authorization Code with PKCE and Client Credentials grants.",
+      "Mastered asymmetric cryptographic token signing (RSA) and live JWKS distribution.",
+      "Enforced multi-tenant schema isolation and strict authorization scopes."
+    ],
+    comments: [
+      { id: 1, author: "Murat Aydın", role: "Chief Security Officer", date: "24 Ağu 2026", text_tr: "Spring Authorization Server ve PKCE standardının eksiksiz uygulanması tam bir savunma sanayi standardı.", text_en: "Full PKCE OAuth2 implementation and RSA signing reflect rigorous enterprise defense standards.", upvotes: 25 }
+    ],
+    githubUrl: "https://github.com",
+    docsUrl: "https://swagger.io"
   }
 ];
