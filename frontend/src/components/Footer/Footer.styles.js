@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const FooterContainer = styled.footer`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: var(--spacing-md) var(--spacing-lg);
   border-top: var(--border-main);
@@ -23,6 +23,7 @@ export const Logo = styled.div`
 export const Copyright = styled.div`
   font-size: 14px;
   font-weight: 600;
+
 `;
 
 export const SocialLinks = styled.div`

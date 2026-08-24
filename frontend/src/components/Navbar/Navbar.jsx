@@ -1,11 +1,23 @@
+import { useState, useEffect } from 'react';
 import { NavWrapper, NavContainer, Logo, NavLinks, NavLink } from './Navbar.styles';
 
 const Navbar = ({ activeSection, onNavClick }) => {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <NavWrapper>
+    <NavWrapper $scrolled={scrolled}>
       <NavContainer>
         <Logo onClick={() => onNavClick('home')}>
-          <span>✦</span> Bayram Enes
+          Bayram Enes Atay
         </Logo>
         <NavLinks>
           <NavLink 
@@ -13,7 +25,7 @@ const Navbar = ({ activeSection, onNavClick }) => {
             $isActive={activeSection === 'home'}
             $activeColor="var(--bg-accent-blue)"
           >
-            About //
+            About
           </NavLink>
           <NavLink 
             onClick={() => onNavClick('portfolio')} 
