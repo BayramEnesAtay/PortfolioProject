@@ -5,7 +5,7 @@ import { HeroContainer, LeftColumn, Title, Highlight, CTAButton, RightColumn, Fr
 const Hero = () => {
   const navigate = useNavigate();
   const { t } = useLanguage();
-
+// deneme
   return (
     <HeroContainer id="home">
       <LeftColumn>
