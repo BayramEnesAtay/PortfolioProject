@@ -114,11 +114,11 @@ export const translations = {
     },
     notFound: {
       title: "Sayfa Bulunamadı //",
-      description: "Erişmeye çalıştığınız endpoint rotası sistem mimarisinde tanımlı değil veya taşınmış olabilir.",
-      scannerTitle: "ROUTE_DEBUGGER.SH",
-      scanningPill: "TARANIYOR",
-      scannedStatus: "Yönlendirme ağacı tarandı: 0 eşleşme bulundu:",
-      homeBtn: "← Ana Sayfaya Dön (Home)"
+      description: "Görünüşe göre aradığınız sayfa yer değiştirmiş veya artık mevcut değil. Hatalı bir bağlantıya tıklamış olabilirsiniz.",
+      scannerTitle: "bilgi_notu.txt",
+      scanningPill: "BİLGİ",
+      scannedStatus: "> Maalesef aradığınız sayfayı bulamadım. Ama endişelenmeyin, aşağıdaki butona tıklayarak ana sayfama dönebilir ve projelerimi incelemeye devam edebilirsiniz.",
+      homeBtn: "← Ana Sayfaya Dön"
     },
     transition: {
       loading: "Yükleniyor //",
@@ -246,10 +246,10 @@ export const translations = {
     },
     notFound: {
       title: "Page Not Found //",
-      description: "The requested route endpoint does not exist in the system architecture or may have moved.",
-      scannerTitle: "ROUTE_DEBUGGER.SH",
-      scanningPill: "SCANNING",
-      scannedStatus: "Router tree scanned: 0 match found for:",
+      description: "It looks like the page you are looking for has moved or no longer exists. You might have followed a broken link.",
+      scannerTitle: "info_note.txt",
+      scanningPill: "NOTE",
+      scannedStatus: "> Unfortunately I couldn't find the page you are looking for. Don't worry, you can return to my home page using the button below and continue exploring my projects.",
       homeBtn: "← Back to Home"
     },
     transition: {

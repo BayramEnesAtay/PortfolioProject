@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
 import { 
   NotFoundContainer, 
@@ -21,7 +21,6 @@ import {
 } from './NotFound.styles';
 
 const NotFound = () => {
-  const location = useLocation();
   const navigate = useNavigate();
   const { t } = useLanguage();
 
@@ -40,10 +39,10 @@ const NotFound = () => {
         </ErrorTitle>
 
         <ErrorDescription>
-          {t.notFound.description} (<code>{location.pathname}</code>)
+          {t.notFound.description}
         </ErrorDescription>
 
-        {/* İnteraktif Skeleton & Wireframe Simülasyon Paneli */}
+        {/* İnteraktif Skeleton & Wireframe Bilgi Paneli */}
         <WireframePanel>
           <WireframeHeader>
             <span>{t.notFound.scannerTitle}</span>
@@ -70,7 +69,7 @@ const NotFound = () => {
 
             <TerminalStatus>
               <StatusPill>{t.notFound.scanningPill}</StatusPill>
-              <span>&gt; {t.notFound.scannedStatus} "{location.pathname}"</span>
+              <span>{t.notFound.scannedStatus}</span>
             </TerminalStatus>
           </WireframeBody>
         </WireframePanel>
