@@ -15,51 +15,63 @@ yarn-debug.log*
 yarn-error.log*
 
 # ==========================================
-# Backend (Java / Spring Boot / Maven / Gradle)
+# .NET / C# / Visual Studio
 # ==========================================
-target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
-.mvn/wrapper/maven-wrapper.jar
+# Build outputs
+**/bin/
+**/obj/
+**/Debug/
+**/Release/
+**/x64/
+**/x86/
+**/[Bb]in/
+**/[Oo]bj/
 
-# Gradle
-.gradle
-build/
-!gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
+# Visual Studio temporary files & user settings
+.vs/
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+*.userprefs
+
+# Dotnet CLI temporary artifacts
+*.generated.cs
+*.deps.json
+*.runtimeconfig.json
+
+# Roslyn & Analyzer logs
+*.DotSettings.user
+
+# ==========================================
+# Database & SQLite Files
+# ==========================================
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Uploads directory (dynamic uploaded files)
+**/Uploads/*
+!**/Uploads/.gitkeep
 
 # ==========================================
 # IDEs and Editors
 # ==========================================
-# IntelliJ IDEA
-.idea/
-*.iml
-*.iws
-*.ipr
-out/
-
-# Eclipse
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache/
-
 # VS Code
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# JetBrains Rider / IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
 
 # ==========================================
 # Operating System Files
@@ -71,3 +83,4 @@ out/
 .Trashes
 ehthumbs.db
 Thumbs.db
+[Dd]esktop.ini
